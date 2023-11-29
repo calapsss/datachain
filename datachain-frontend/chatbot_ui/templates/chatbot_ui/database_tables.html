@@ -1,0 +1,11 @@
+
+{% extends "chatbot_ui/base.html" %}
+
+{% block content %}
+<h2>Available Tables</h2>
+<ul>
+    {% for table in tables %}
+    <li><a href="{% url 'view_table' table %}">{{ table }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

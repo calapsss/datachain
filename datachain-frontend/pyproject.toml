@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "datachain-frontend"
+version = "0.1.0"
+description = ""
+authors = ["Charles Calapini <charles@calapini.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+datachain-backend = {path = "/root/datachain/datachain-backend/dist/datachain_backend-0.1.0-py3-none-any.whl"}
+django = "^4.2.7"
+django-widget-tweaks = "^1.5.0"
+channels = "^4.0.0"
+pyscopg2 = "^66.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

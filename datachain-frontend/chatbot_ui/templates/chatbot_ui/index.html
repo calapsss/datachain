@@ -1,0 +1,36 @@
+<!-- chatbot_ui/templates/chatbot_ui/index.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UI</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="chatbot">
+        <header id="chat-header">
+            <h1>Chat with Us</h1>
+        </header>
+        <div id="chat-window">
+            <!-- Example messages -->
+            <div class="message friend-message">
+                Hello! How can I help you today?
+            </div>
+            <!-- Add more example messages here -->
+        </div>
+        <div id="chat-input">
+            <input type="text" placeholder="Type a message..." />
+            <input type="file" id="file-input" style="display: none;" />
+            <label for="file-input" class="file-input-label">Upload File</label>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script src="{% static 'js/chat.js' %}"></script>
+</body>
+</html>

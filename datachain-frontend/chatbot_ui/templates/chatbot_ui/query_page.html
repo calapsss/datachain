@@ -1,0 +1,80 @@
+<!-- chatbot_ui/templates/chatbot_ui/query_page.html -->
+
+{% extends "chatbot_ui/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <!-- Database status panel -->
+    <div class="database-status">
+        <h2>Datachain - Nested RAG w/ SQL Implementation</h2>
+        <p>Under development</p>
+        <!-- Add more status information here -->
+    </div>
+
+    <!-- Query input panel -->
+    <div class="query-input">
+        <h2>SQL Query</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_query">Place your SQL statement directly in the text area below and submit your request using the button.</label>
+                {{ form.query }}
+            </div>
+            <button type="submit" class="submit-btn">Submit new SQL Query</button>
+        </form>
+    </div>
+
+   
+    
+    <div class="results">
+        {% if rows %}
+            <h2>Query Result:</h2>
+            <div class="table-responsive">
+                <table>
+                    <!-- Table headers -->
+                    <thead>
+                        <tr>
+                            {% for col in columns %}
+                                <th>{{ col }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <!-- Table body -->
+                    <tbody>
+                        {% for row in rows %}
+                            <tr>
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if rows.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ rows.previous_page_number }}">previous</a>
+                    {% endif %}
+                    
+                    <span class="current">
+                        Page {{ rows.number }} of {{ rows.paginator.num_pages }}.
+                    </span>
+                    
+                    {% if rows.has_next %}
+                        <a href="?page={{ rows.next_page_number }}">next</a>
+                        <a href="?page={{ rows.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<link href="{% static 'css/query_page.css' %}" rel="stylesheet">
+{% endblock %}

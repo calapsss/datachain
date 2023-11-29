@@ -1,0 +1,22 @@
+<!-- chatbot_ui/templates/base.html or chatbot_ui/templates/chatbot_ui/base.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Chatbot UI{% endblock %}</title>
+    {% block css %}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <!-- This block will be overridden by child templates -->
+    {% endblock %}
+    {% block js %}
+    <script src="{% static 'js/chat.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

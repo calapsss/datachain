@@ -1,0 +1,92 @@
+/* chatbot_ui/static/css/style.css */
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, 'Roboto', sans-serif;
+    background-color: #FAFAFA; /* OpenAI-like background color */
+}
+
+#chatbot {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff; /* OpenAI-like white color for the chat area */
+}
+
+#chat-header {
+    background-color: #1a1a1a; /* OpenAI-like dark header */
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#chat-window {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 18px;
+    background-color: #00B4B6; /* OpenAI-like teal color for messages */
+    color: white; /* White text for contrast */
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 60%;
+    font-weight: 400;
+}
+
+.friend-message {
+    margin-left: 20px;
+    align-self: start;
+}
+
+#chat-input {
+    display: flex;
+    padding: 10px;
+    
+    font-family: 'Helvetica Neue', Helvetica, 'Roboto', sans-serif;
+    background: #f1f1f1; /* Light grey background for the input area */
+}
+
+#chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    
+    font-family: 'Helvetica Neue', Helvetica, 'Roboto', sans-serif;
+    border-radius: 5px;
+}
+
+#chat-input button {
+    padding: 10px 20px;
+    background-color: #00B4B6; /* OpenAI-like teal color for the send button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#chat-input button:hover {
+    background-color: #008C8D; /* Slightly darker teal for the hover state */
+}
+
+
+.file-input-label {
+    background-color: #00B4B6; /* OpenAI-like teal color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.file-input-label:hover {
+    background-color: #008C8D; /* Darker teal for hover state */
+}
