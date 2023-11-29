@@ -5,6 +5,7 @@
 Datachain is a comprehensive project that includes a Python package for backend operations and a Django application for the frontend. The backend provides classes and helper functions for interacting with a PostgreSQL database. The frontend is a boilerplate UI for the chatbot, 
 
 ## Backend
+![Python package](https://github.com/username/repository/workflows/Python%20package/badge.svg)
 
 The backend provides the following key features:
 
