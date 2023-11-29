@@ -23,12 +23,11 @@ jobs:
     - name: Install Poetry
       run: |
         curl -sSL https://install.python-poetry.org | python3 -
-    - name: Move to datachain_backend directory
-      run: |
-        cd datachain-backend
     - name: Install dependencies
       run: |
+        cd datachain-backend
         poetry install
     - name: Test with pytest
       run: |
+        cd datachain-backend
         poetry run pytest
