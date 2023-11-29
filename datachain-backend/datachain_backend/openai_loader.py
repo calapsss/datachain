@@ -4,19 +4,15 @@ Temporary this must be refactored to load multiple different models not just ope
 import openai 
 import requests 
 import json
+import os
 
-from tenacity import retry, wait_random_exponential, stop_after_attempt
+GPT_MODEL = "gpt-4"
 
-
-from datachain_backend.utils.settings import openai_settings_from_dot_env
-
-GPT_MODEL = "gpt-3.5-turbo-0613"
-
-@retry(wait=wait_random_exponential(multiplier=1, max=40), stop=stop_after_attempt(3))
 def chat_completion_request(messages, tools=None, tool_choice=None, model=GPT_MODEL):
+    api_key = os.environ.get("OPENAI_API_KEY")
     headers = {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + openai.api_key,
+        "Authorization": "Bearer " + api_key,
     }
     json_data = {"model": model, "messages": messages}
     if tools is not None:

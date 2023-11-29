@@ -12,10 +12,9 @@ def openai_settings_from_dot_env() -> Tuple[str, Optional[str]]:
     
     config = dotenv_values(".env")
     api_key = config.get("OPENAI_API_KEY")
-    org_id = config.get("OPENAI_ORG_ID")
     
     assert api_key, "OPENAI_API_KEY not found in .env file"
 
     #Org ID is optional
-    return api_key, org_id
+    return api_key
 
