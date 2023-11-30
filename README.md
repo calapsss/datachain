@@ -30,7 +30,7 @@ The frontend is a Django application with the following views:
 `datachain_backend` already comes preinstalled as dependency on the frontend. If you want to install and use the package in your project:
 1. Clone the repository: `git clone https://github.com/calapsss/datachain.git`
 2. Navigate to `dist` directory: `cd datachain/datachain-backend/dist/datachain_backend-0.1.0-py3-none-any.whl`
-3. You can install the package `pip install datachain_backend-0.1.0-py3-none-any.whl`
+3. You can install the package `pip install datachain_backend-0.1.0-py3-none-any.whl` and `pip install datachain_backend-0.1.0-py3-none-any.tar.gz`
 
 To check the how it works with `datachain_frontend`:
 1. Clone the repository: `git clone https://github.com/calapsss/datachain.git`

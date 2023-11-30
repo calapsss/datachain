@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.db import connection
 from .forms import SQLQueryForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datachain_backend.sqlchain import SQLChain
+
+
 
 def index(request):
     return render(request, 'chatbot_ui/index.html')
@@ -40,6 +43,14 @@ def query_page(request):
 
     if request.method == 'POST' and form.is_valid():
         query = form.cleaned_data['query']
+        table = form.cleaned_data['table']
+
+        #Prompt to query with sqlchain
+        sqlchain = SQLChain()
+        sqlchain.connect()
+        query = sqlchain.create_query(query, table, "gpt-3.5-turbo-1106")
+        
+       
         with connection.cursor() as cursor:
             try:
                 cursor.execute(query)
@@ -48,9 +59,7 @@ def query_page(request):
             except Exception as e:  # Be more specific with exception handling
                 rows = []
                 # Handle the exception or display it in the template
-
-        
-    columns = [col[0] for col in cursor.description]  # Get column headers from cursor.description
+  
     paginator = Paginator(rows, per_page)
     try:
         rows = paginator.page(page)

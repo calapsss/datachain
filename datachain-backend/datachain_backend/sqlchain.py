@@ -5,6 +5,7 @@ import csv
 
 import csv
 import psycopg2
+import re
 
 class SQLChain:
     """
@@ -20,7 +21,7 @@ class SQLChain:
         self.user = "postgres"
         self.password = "password"
         self.port = "5432"
-        self.connection = None
+        self.conn = None
     
     def connect(self):
         """
@@ -76,14 +77,12 @@ class SQLChain:
         Returns:
             list: A list of tuples representing the table schema.
         """
-        with self.conn.cursor() as cursor:
-            cursor.execute(f"SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '{table_name}';")
-            rows = cursor.fetchall()
-            for row in rows:
-                print(row)
+        cursor = self.conn.cursor()
+        cursor.execute(f"SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '{table_name}';")
+        rows = cursor.fetchall()
         return rows
     
-    def create_query(self, prompt, table_name):
+    def create_query(self, prompt, table_name, model = None):
         """
         Creates SQL query based on natural language prompt and table name.
 
@@ -101,12 +100,22 @@ class SQLChain:
             You are given a table named {table_name} with the following schema:
             {table_schema}
             Write an SQL query to answer the prompt: {prompt}
+            BONT WRAP IN CODEBLOCK, WRAP  YOUR QUERY IN [START QUERY] AND [END QUERY]
             SQL Query:
         """
         messages = [] 
         messages.append({"role": "user", "content": prompt})
-        chat_response = openai_loader.chat_completion_request(messages)
+        if model:
+            chat_response = openai_loader.chat_completion_request(messages, model=model)
+        else:
+            chat_response = openai_loader.chat_completion_request(messages)
+        print(chat_response.json())
+        #ADd error handling in case of API errors
         query = chat_response.json()["choices"][0]["message"]['content']
+        match = re.search(r'\[START QUERY\]\n(.*?)\n\[END QUERY\]', query, re.DOTALL)
+
+        if match:
+            query = match.group(1)
         return query
     
     def execute_query(self, query):

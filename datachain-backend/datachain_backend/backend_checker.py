@@ -32,6 +32,7 @@ print(sqlchain.check_table_exists("house_data"))
 # #Test fetching data
 # print(sqlchain.fetch_data("house_data"))
 
-#Test get data schema\
+#Test get crete query
+print(sqlchain.create_query("Most relevant data", "house_data", "gpt-3.5-turbo-1106"))
 
 sqlchain.disconnect()  # close the connection

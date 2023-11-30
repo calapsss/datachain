@@ -7,11 +7,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-datachain-backend = {path = "/root/datachain/datachain-backend/dist/datachain_backend-0.1.0-py3-none-any.whl"}
+datachain-backend = {path = "/root/datachain/datachain-backend/dist/datachain_backend-0.1.0.tar.gz"}
 django = "^4.2.7"
 django-widget-tweaks = "^1.5.0"
 channels = "^4.0.0"
 pyscopg2 = "^66.0.2"
+django-environ = "^0.11.2"
 
 
 [build-system]
