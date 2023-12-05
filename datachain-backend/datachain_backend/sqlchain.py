@@ -103,8 +103,11 @@ class SQLChain:
             BONT WRAP IN CODEBLOCK, WRAP  YOUR QUERY IN [START QUERY] AND [END QUERY]
             SQL Query:
         """
+        #Just for debugging
+        print("Sending prompt to OpenAI: ", prompt)
         messages = [] 
         messages.append({"role": "user", "content": prompt})
+        print("Sending messages to OpenAI: ", messages)
         if model:
             chat_response = openai_loader.chat_completion_request(messages, model=model)
         else:
